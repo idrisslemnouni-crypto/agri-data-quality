@@ -38,3 +38,8 @@ python -m pytest -q
 The pinned 50 MB source downloads automatically. Raw data and the generated 577,980-row weather warehouse remain saved locally under data/ and are ignored in Git. Inspect data/processed/agriculture.sqlite with any SQLite client; [queries](sql/checks.sql) are supplied. [Executed notebook](notebooks/01_evidence.ipynb), [verification](docs/verification.md), [learning guide](docs/learning-guide.md), [interview notes](docs/interview-notes.md), [design](docs/design.md).
 
 This is a static archived-data ETL, not a streaming service or distributed Spark pipeline. Rules detect defined structural problems; they cannot prove source measurement accuracy. No errors, labels or benefits are invented to make the audit look stronger. Development assisted by AI; the learning notes support personal understanding.
+
+
+## GitHub publication
+
+[Public repository](https://github.com/idrisslemnouni-crypto/agri-data-quality) · [Current CI results](https://github.com/idrisslemnouni-crypto/agri-data-quality/actions). Published following the user's explicit 5 October 2026 request to release the prepared portfolio together. Earlier local-verification notes describe the pre-publication checkpoint. Raw sources and trained artifacts remain excluded from Git; reproduction commands regenerate them.
