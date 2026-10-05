@@ -1,0 +1,3 @@
+# Design fixed before execution
+
+Audit the complete three-table Zenodo county archive, rather than the modeling subset. Preserve valid yield rows with missing soil/weather as explicit coverage warnings. Quarantine invalid keys, duplicate keys, nonfinite/negative amounts, invalid dekads and inconsistent temperatures. Do not invent missing units or infer daily events from dekads. Load a constrained SQLite warehouse transactionally into a temporary file; replace only on successful completion. Rebuilding from frozen source is idempotent. Use county-year aggregates before joins, avoiding weather-row multiplication of yields. No ML or causal interpretation is needed.

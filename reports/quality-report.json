@@ -1,0 +1,35 @@
+{
+  "source_audit": {
+    "yield": {
+      "source_rows": 45499,
+      "loaded_rows": 45499,
+      "quarantined_rows": 0,
+      "sha256": "20bed8fee96e614ea7f254d1140f401c77fd16d08eecfb0db1a0cb490852c5b3",
+      "missing_cells": 0,
+      "duplicate_key_rows": 0
+    },
+    "soil": {
+      "source_rows": 917,
+      "loaded_rows": 917,
+      "quarantined_rows": 0,
+      "sha256": "d71073640368946d50b59a2822f2d6d0543b5c51e1eeb85854ca79fd02025fe7",
+      "missing_cells": 0,
+      "duplicate_key_rows": 0
+    },
+    "weather": {
+      "source_rows": 577980,
+      "loaded_rows": 577980,
+      "quarantined_rows": 0,
+      "sha256": "7458c1682fea0494c61e812ea1162256344441186f7991b40d8a19bcb7427201",
+      "missing_cells": 0,
+      "duplicate_key_rows": 0
+    }
+  },
+  "coverage": {
+    "yield_rows": 45499,
+    "missing_soil_rows": 23980,
+    "incomplete_weather_rows": 29444,
+    "zero_yield_rows": 501
+  },
+  "scope": "Complete archived county tables; missing joins are coverage warnings; soil units unverified"
+}

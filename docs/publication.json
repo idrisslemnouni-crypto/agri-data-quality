@@ -1,0 +1,21 @@
+{
+  "description": "Audited agricultural county ETL with provenance, explicit join coverage and atomic constrained SQLite warehouse",
+  "topics": [
+    "agriculture",
+    "data-engineering",
+    "data-quality",
+    "etl",
+    "sqlite",
+    "python"
+  ],
+  "issues": [
+    {
+      "title": "Confirm original soil and excluded weather units",
+      "body": "SM_WHC and SM_DEPTH retain unverified source units. VPRES/WSPD/RAD are audited but excluded from the warehouse. Obtain primary field metadata before conversions or quantitative recommendations."
+    },
+    {
+      "title": "Investigate archived zero yields and selective coverage",
+      "body": "The source contains 501 zero yields and large unmatched soil/weather coverage. Confirm semantics and missingness causes with the source documentation without treating every unmatched row as invalid."
+    }
+  ]
+}
