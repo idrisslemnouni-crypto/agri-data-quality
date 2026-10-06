@@ -52,7 +52,12 @@ def validate(frame, kind):
         flag(values[key].ne(values[key].round()), "noninteger_key")
     if "FYEAR" in values:
         flag(~values.FYEAR.between(1900, 2100), "invalid_year")
-    flag(frame.duplicated(keys, keep=False), "duplicate_key")
+    canonical_keys = frame[keys].copy()
+    canonical_keys["COUNTY_ID"] = ids
+    for key in [k for k in keys if k != "COUNTY_ID"]:
+        # Preserve unparseable keys for diagnostics instead of merging them as NaN.
+        canonical_keys[key] = values[key].where(values[key].notna(), frame[key])
+    flag(canonical_keys.duplicated(keep=False), "duplicate_key")
     if kind == "yield":
         flag(values.YIELD < 0, "negative_yield")
     if kind == "soil":
@@ -116,7 +121,9 @@ def run(root):
             "quarantined_rows": len(rejected[kind]),
             "sha256": file_hash(raw / file),
             "missing_cells": int(source.isna().sum().sum()),
-            "duplicate_key_rows": int(source.duplicated(KEYS[kind], keep=False).sum()),
+            "duplicate_key_rows": int(
+                rejected[kind].reason.str.contains("duplicate_key;", regex=False).sum()
+            ),
         }
     warehouse = root / "data/processed/agriculture.sqlite"
     load_warehouse(warehouse, clean)

@@ -22,7 +22,7 @@ Official size/hash → three fixed archive entries → key/number/range audit
 → annual weather view → one-row-per-yield coverage view → report and SQL analytics
 ```
 
-All members of a duplicate key group are quarantined; no arbitrary first record is selected. Foreign keys, primary keys, year/dekad checks, nonnegative amounts and temperature ordering are enforced in SQLite. Build into a temporary database, validate integrity and foreign keys, then atomically replace the output. Failure preserves the previous database. Frozen-source rebuild is idempotent. Missing weather/soil remains visible through left joins. Aggregate weather to county-year before joining annual yields, avoiding row multiplication. State/year yields are **unweighted county means**, not production-weighted estimates or causal effects.
+All members of a duplicate key group are quarantined; no arbitrary first record is selected. Year/dekad keys are converted to numeric values before duplicate detection, so `2020` and `2020.0` cannot become colliding warehouse keys. Quarantine retains the original source values and row numbers; audit duplicate counts use the same rule. Foreign keys, primary keys, year/dekad checks, nonnegative amounts and temperature ordering are enforced in SQLite. Build into a temporary database, validate integrity and foreign keys, then atomically replace the output. Failure preserves the previous database. Frozen-source rebuild is idempotent. Missing weather/soil remains visible through left joins. Aggregate weather to county-year before joining annual yields, avoiding row multiplication. State/year yields are **unweighted county means**, not production-weighted estimates or causal effects.
 
 ## Reproduce (Python 3.12)
 
